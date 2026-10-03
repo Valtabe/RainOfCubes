@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
+    [SerializeField] private ColorChanger _colorChanger;
+    [SerializeField] private CubeTouchHandler _touchHandler;
     [SerializeField] private float _minReleaseDelay = 2f;
     [SerializeField] private float _maxReleaseDelay = 5f;
 
@@ -17,18 +19,21 @@ public class Cube : MonoBehaviour
         float delay = UnityEngine.Random.Range(_minReleaseDelay, _maxReleaseDelay);
         _wait = new WaitForSeconds(delay);
         _isPlatformTouched = false;
+        _touchHandler.PlatformTouched += StartWaitingToRelease;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnDisable()
+    {
+        _touchHandler.PlatformTouched -= StartWaitingToRelease;
+    }
+
+    private void StartWaitingToRelease()
     {
         if (_isPlatformTouched) return;
 
-        if (collision.gameObject.TryGetComponent<Platform>(out Platform platform))
-        {
-            _isPlatformTouched = true;
-            this.GetComponent<Renderer>().material.color = UnityEngine.Random.ColorHSV();
-            StartCoroutine(GetReadyToRelease());
-        }
+        _colorChanger.ChangeColor();
+        _isPlatformTouched = true;
+        StartCoroutine(GetReadyToRelease());
     }
 
     private IEnumerator GetReadyToRelease()

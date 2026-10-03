@@ -261,7 +261,7 @@ MonoBehaviour:
   _centerSpawnPosition: {x: 0, y: 0, z: 0}
   _xSpawnRange: 9
   _zSpawnRange: 9
-  _repeatRate: 0.5
+  _cubeSpawnDelay: 1
   _poolCapacity: 6
   _poolMaxSize: 6
 --- !u!4 &30154392

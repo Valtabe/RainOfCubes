@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 825434349367798945}
   - component: {fileID: 8304050273951514645}
   - component: {fileID: 1749484750580039825}
+  - component: {fileID: 3299298655578456885}
+  - component: {fileID: 6584326633460037474}
   m_Layer: 0
   m_Name: CubePrefab
   m_TagString: Untagged
@@ -146,5 +148,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 539c2b24b48f33d43a62791cc4f6372f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _colorChanger: {fileID: 3299298655578456885}
+  _touchHandler: {fileID: 6584326633460037474}
   _minReleaseDelay: 2
   _maxReleaseDelay: 5
+--- !u!114 &3299298655578456885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262002514920413239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec8098cd32bacc4da1f065fbebc21c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6584326633460037474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262002514920413239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f30e0da3d318fdb44974a4fb0f8c4fcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -7,11 +8,18 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Vector3 _centerSpawnPosition;
     [SerializeField] private float _xSpawnRange = 9;
     [SerializeField] private float _zSpawnRange = 9;
-    [SerializeField] private float _repeatRate = 1f;
+    [SerializeField] private float _cubeSpawnDelay;
     [SerializeField] private int _poolCapacity = 8;
     [SerializeField] private int _poolMaxSize = 8;
 
     private ObjectPool<Cube> _pool;
+    private WaitForSeconds _wait;
+
+    private void Start()
+    {
+        _wait = new WaitForSeconds(_cubeSpawnDelay);
+        StartCoroutine(SpawnCubeAfterDelay());
+    }
 
     private void Awake()
     {
@@ -43,11 +51,15 @@ public class Spawner : MonoBehaviour
         cube.gameObject.SetActive(false);
     }
 
+    private void TakeFromPool() => _pool.Get();
 
-    private void Start()
+    private IEnumerator SpawnCubeAfterDelay()
     {
-        InvokeRepeating(nameof(GetCube), 0.0f, _repeatRate);
-    }
+        while (true)
+        {
+            TakeFromPool();
 
-    private void GetCube() => _pool.Get();
+            yield return _wait;
+        }
+    }
 }
