@@ -37,7 +37,7 @@ public class Spawner : MonoBehaviour
     {
         float xOffset = UnityEngine.Random.Range(-_xSpawnRange, _xSpawnRange);
         float zOffset = UnityEngine.Random.Range(-_zSpawnRange, _zSpawnRange);
-        cube.GetComponent<Renderer>().material.color = _cubePrefab.GetComponent<Renderer>().sharedMaterial.color;
+        cube.Color = _cubePrefab.GetComponent<Renderer>().sharedMaterial.color;
         cube.GetComponent<Rigidbody>().velocity = Vector3.zero;
         cube.transform.position = gameObject.transform.position + new Vector3(xOffset, 0, zOffset);
         cube.transform.rotation = Quaternion.identity;

@@ -14,6 +14,19 @@ public class Cube : MonoBehaviour
     private bool _isPlatformTouched;
     private WaitForSeconds _wait;
 
+    public Color Color 
+    { 
+        get
+        {
+            return GetComponent<Renderer>().material.color;
+        }
+
+        set
+        {
+            _colorChanger.SetCustomColor(value);
+        }
+    }
+
     private void OnEnable()
     {
         float delay = UnityEngine.Random.Range(_minReleaseDelay, _maxReleaseDelay);
@@ -29,9 +42,10 @@ public class Cube : MonoBehaviour
 
     private void StartWaitingToRelease()
     {
-        if (_isPlatformTouched) return;
+        if (_isPlatformTouched) 
+            return;
 
-        _colorChanger.ChangeColor();
+        _colorChanger.SetRandomColor();
         _isPlatformTouched = true;
         StartCoroutine(GetReadyToRelease());
     }
